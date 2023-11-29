@@ -1,0 +1,95 @@
+.QuizForm {
+  text-align: left;
+}
+
+.QuizForm input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px 10px;
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+
+.QuizForm button {
+  padding: 5px 10px;
+}
+
+.QuizQnA {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.QuizQuestion {
+  position: relative;
+}
+
+.QuizQuestion div {
+  margin-top: 5px;
+}
+
+.RemoveQuestion {
+  position: absolute;
+  top: 3.5rem;
+  left: -2rem;
+  font-size: 2rem;
+  color: #dc143c;
+  cursor: pointer;
+}
+
+.QuizAnswer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.QuizAnswer input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.QuizAnswer label {
+  margin-left: 13px;
+  margin-right: 8px;
+}
+
+.RemoveAnswer {
+  position: absolute;
+  top: 5px;
+  left: -1.2rem;
+  font-size: 1.2rem;
+  color: #dc143c;
+  cursor: pointer;
+}
+
+.QuizAnswers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.FormButtons {
+  margin-top: 8px;
+  display: flex;
+}
+
+.FormButtons button {
+  flex-grow: 1;
+  border-radius: 3px;
+}
+
+.FormButtons button:first-of-type {
+  margin-right: 10px;
+}
+
+.FormButtons-Primary {
+  border: 1px solid #28a745;
+  background: #a9dbb4;
+  color: #28a745;
+}
+
+.FormButtons-Secondary {
+  border: 1px solid #dc143c;
+  background: #f1a1b1;
+  color: #dc143c;
+}

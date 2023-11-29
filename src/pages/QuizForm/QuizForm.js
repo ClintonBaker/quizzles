@@ -1,5 +1,6 @@
+import "./QuizForm.css";
 import { useContext, useState } from "react";
-import { QuizContext } from "../comps/QuizContext";
+import { QuizContext } from "../../comps/QuizContext";
 
 export const QuizForm = ({ closeForm }) => {
   const { newQuiz, updateQuiz, selected, setSelected } =
@@ -105,7 +106,7 @@ export const QuizForm = ({ closeForm }) => {
 
   const removeAnswer = (qIndex, aIndex) => {
     const updatedQnA = [...quizData.questions_answers];
-    if (updatedQnA.answers.length > 1) {
+    if (updatedQnA[qIndex].answers.length > 1) {
       const updatedAnswers = [...updatedQnA[qIndex].answers];
       updatedAnswers.splice(aIndex, 1);
 
@@ -128,9 +129,11 @@ export const QuizForm = ({ closeForm }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="QuizForm" onSubmit={handleSubmit}>
       <div>
+        <label htmlFor="title">Title:</label>
         <input
+          id="title"
           type="text"
           name="title"
           value={quizData.title}
@@ -139,7 +142,9 @@ export const QuizForm = ({ closeForm }) => {
         />
       </div>
       <div>
+        <label htmlFor="description">Description:</label>
         <input
+          id="description"
           type="text"
           name="description"
           value={quizData.description}
@@ -148,7 +153,9 @@ export const QuizForm = ({ closeForm }) => {
         />
       </div>
       <div>
+        <label htmlFor="ytUrl">YouTube URL:</label>
         <input
+          id="ytUrl"
           type="text"
           name="url"
           value={quizData.url}
@@ -156,7 +163,7 @@ export const QuizForm = ({ closeForm }) => {
           placeholder="YouTube URL"
         />
       </div>
-      <div>
+      <div className="QuizQnA">
         <h2>Questions and Answers</h2>
         <button
           type="button"
@@ -169,15 +176,16 @@ export const QuizForm = ({ closeForm }) => {
         {quizData.questions_answers.map((question, qIndex) => {
           const qKey = `question-${qIndex}`;
           return (
-            <div key={qKey}>
+            <div className="QuizQuestion" key={qKey}>
+              <span
+                className="RemoveQuestion"
+                onClick={() => {
+                  removeQuestion(qIndex);
+                }}
+              >
+                x
+              </span>
               <div>
-                <span
-                  onClick={() => {
-                    removeQuestion(qIndex);
-                  }}
-                >
-                  x
-                </span>
                 <label htmlFor={`${qKey}-text`}>Question:</label>
                 <input
                   id={`${qKey}-text`}
@@ -187,7 +195,7 @@ export const QuizForm = ({ closeForm }) => {
                   onChange={(e) => {
                     handleQnAChange(qIndex, e);
                   }}
-                  placeholder={question.text}
+                  placeholder="Enter a question"
                 />
               </div>
               <div>
@@ -202,7 +210,7 @@ export const QuizForm = ({ closeForm }) => {
                   onChange={(e) => {
                     handleQnAChange(qIndex, e);
                   }}
-                  placeholder={question.feedback_true}
+                  placeholder="Feedback for the correct answer"
                 />
               </div>
               <div>
@@ -217,26 +225,27 @@ export const QuizForm = ({ closeForm }) => {
                   onChange={(e) => {
                     handleQnAChange(qIndex, e);
                   }}
-                  placeholder={question.feedback_false}
+                  placeholder="Feedback for an incorrect answer"
                 />
               </div>
               <div>
-                <div>
-                  <span>Answers:</span>
+                <div className="QuizAnswers">
+                  <h4>Answers</h4>
                   <button
                     type="button"
                     onClick={() => {
                       addAnswer(qIndex);
                     }}
                   >
-                    Add More Answers
+                    Add New Answer
                   </button>
                 </div>
                 {question.answers.map((answer, aIndex) => {
                   const aKey = `${qKey}-a-${aIndex}`;
                   return (
-                    <div key={aKey}>
+                    <div className="QuizAnswer" key={aKey}>
                       <span
+                        className="RemoveAnswer"
                         onClick={() => {
                           removeAnswer(qIndex, aIndex);
                         }}
@@ -248,12 +257,14 @@ export const QuizForm = ({ closeForm }) => {
                         name="text"
                         id={`${aKey}-text`}
                         value={answer.text}
+                        placeholder="Input answer"
                         onChange={(e) => {
                           handleAnswersChange(qIndex, aIndex, e);
                         }}
                       />
                       <label htmlFor={`${aKey}-is_true`}>Correct</label>
                       <input
+                        className="AnswerCheckbox"
                         type="checkbox"
                         name="is_true"
                         id={`${aKey}-is_true`}
@@ -270,12 +281,22 @@ export const QuizForm = ({ closeForm }) => {
           );
         })}
       </div>
-      <button type="button" onClick={handleCancel}>
-        Cancel
-      </button>
-      <button type="submit" onClick={handleSubmit}>
-        Save
-      </button>
+      <div className="FormButtons">
+        <button
+          type="button"
+          className="FormButtons-Secondary"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="FormButtons-Primary"
+          onClick={handleSubmit}
+        >
+          Save
+        </button>
+      </div>
     </form>
   );
 };

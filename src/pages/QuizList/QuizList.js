@@ -1,5 +1,6 @@
+import "./QuizList.css";
 import { useContext } from "react";
-import { QuizContext } from "../comps/QuizContext";
+import { QuizContext } from "../../comps/QuizContext";
 
 export const QuizList = ({ toggleForm }) => {
   const { quizzes, setSelected } = useContext(QuizContext);
@@ -11,10 +12,14 @@ export const QuizList = ({ toggleForm }) => {
 
   return (
     <div>
+      <button className="NewQzBtn" type="button" onClick={toggleForm}>
+        New Quiz
+      </button>
       {quizzes.map((quiz, index) => (
-        <div key={index}>
-          <div>{quiz.title}</div>
+        <div key={index} className="QuizItem">
+          <div className="QuizTitle">{quiz.title}</div>
           <button
+            className="EditQzBtn"
             type="button"
             onClick={() => {
               handleClick(quiz);
@@ -24,10 +29,6 @@ export const QuizList = ({ toggleForm }) => {
           </button>
         </div>
       ))}
-
-      <button type="button" onClick={toggleForm}>
-        New Quiz
-      </button>
     </div>
   );
 };

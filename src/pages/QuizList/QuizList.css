@@ -1,0 +1,26 @@
+.QuizItem {
+  display: flex;
+  font-size: 1.5rem;
+  margin-top: 8px;
+  justify-content: center;
+}
+
+.QuizTitle {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.NewQzBtn {
+  width: 70%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  border: 1px solid #999;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+.EditQzBtn {
+  padding: 10px 15px;
+}
